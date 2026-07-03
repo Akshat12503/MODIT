@@ -10,6 +10,10 @@
           (ngModelChange)="searchQuery.set($event)"
         />
       </div>
+
+      <button class="btn-outline-dark" routerLink="/vendor-dashboard" style="background: white; border: 1px solid #ccc; margin-right: 10px;">
+        🏪 Vendor View
+      </button>
       
       <button class="btn-primary" routerLink="/checkout">
         🛒 Cart ({{ cartService.items().length }})
