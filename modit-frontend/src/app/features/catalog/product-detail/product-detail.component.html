@@ -1,0 +1,67 @@
+<div class="detail-layout">
+  <nav class="navbar">
+    <div class="brand">MODIT <span class="badge">NCR</span></div>
+    <a routerLink="/products" class="btn-outline">← Back to Catalog</a>
+  </nav>
+
+  <div class="content-wrapper">
+    <header class="product-header">
+      <div class="product-icon">{{ product().image }}</div>
+      <div class="product-info">
+        <span class="category-tag">{{ product().category }}</span>
+        <h1>{{ product().name }}</h1>
+        <p>{{ product().description }}</p>
+      </div>
+    </header>
+
+    <div class="ai-banner">
+      <div class="ai-icon">✨</div>
+      <div class="ai-text">
+        <strong>Agentic AI Vendor Match:</strong> Based on your location in Delhi NCR and requirement for fast delivery, we recommend <em>Delhi NCR Builders Hub</em>. They offer the best balance of price (₹380) and reliability (4.8⭐).
+      </div>
+    </div>
+
+    <section class="comparison-section">
+      <h2>Supplier Quotes & Comparison</h2>
+      
+      <div class="table-responsive">
+        <table class="quotes-table">
+          <thead>
+            <tr>
+              <th>Supplier / Vendor</th>
+              <th>Price (per {{ product().unit }})</th>
+              <th>Est. Delivery</th>
+              <th>Rating</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (quote of quotes(); track quote.id) {
+              <tr [class.highlight]="quote.isAiRecommended">
+                <td>
+                  <div class="vendor-name">
+                    {{ quote.vendorName }}
+                    @if (quote.isAiRecommended) {
+                      <span class="ai-badge">AI Pick</span>
+                    }
+                  </div>
+                </td>
+                <td class="price">₹{{ quote.pricePerUnit }}</td>
+                <td>{{ quote.deliveryTimeDays }} days</td>
+                <td>{{ quote.rating }} ⭐</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-primary small">Add to Cart</button>
+                    <button class="btn-secondary small" (click)="requestNegotiation(quote.id)">
+                      AI Negotiate
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

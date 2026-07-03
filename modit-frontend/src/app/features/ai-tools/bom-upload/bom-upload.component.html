@@ -1,0 +1,90 @@
+<div class="bom-layout">
+  <nav class="navbar">
+    <div class="brand">MODIT <span class="badge">NCR</span></div>
+    <a routerLink="/products" class="btn-outline">← Back to Catalog</a>
+  </nav>
+
+  <div class="content-wrapper">
+    <header class="page-header">
+      <div class="title-row">
+        <span class="ai-icon">✨</span>
+        <h1>AI BOQ/BOM Reader</h1>
+      </div>
+      <p>Upload your architectural Bill of Quantities (Excel, PDF, or Image). Our Agentic AI will read the requirements, map them to our catalog, and generate an instant procurement list.</p>
+    </header>
+
+    @if (!extractedData()) {
+      <div class="upload-zone" [class.processing]="isAnalyzing()">
+        @if (isAnalyzing()) {
+          <div class="spinner"></div>
+          <h3>Agentic AI is analyzing your document...</h3>
+          <p>Extracting materials, standardizing units, and matching vendors in Delhi NCR.</p>
+        } @else {
+          <div class="upload-icon">📄</div>
+          <h3>Drag & Drop your BOM here</h3>
+          <p>or click to browse files</p>
+          <input type="file" (change)="onFileSelected($event)" accept=".pdf,.xlsx,.xls,.png,.jpg" />
+          
+          @if (selectedFile()) {
+            <div class="file-info">
+              Ready to process: <strong>{{ selectedFile()?.name }}</strong>
+            </div>
+            <button class="btn-primary large mt-2" (click)="analyzeBOM()">Analyze Document</button>
+          }
+        }
+      </div>
+    } @else {
+      <div class="results-section">
+        <div class="success-banner">
+          Analysis Complete! Found {{ extractedData()?.length }} line items.
+        </div>
+
+        <table class="bom-table">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Original Document Text</th>
+              <th>Mapped Category</th>
+              <th>Qty</th>
+              <th>Est. Cost</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of extractedData(); track item.id) {
+              <tr [class.warning]="item.status === 'Review Needed'">
+                <td>
+                  <span class="status-badge" [class.success]="item.status === 'Matched'">
+                    {{ item.status }}
+                  </span>
+                </td>
+                <td class="original-text">"{{ item.originalText }}"</td>
+                <td><strong>{{ item.mappedCategory }}</strong></td>
+                <td>{{ item.quantity }} {{ item.unit }}</td>
+                <td>₹{{ item.estimatedTotal.toLocaleString() }}</td>
+                <td>
+                  @if (item.status === 'Matched') {
+                    <button class="btn-secondary small" routerLink="/product/mock-id">Compare Quotes</button>
+                  } @else {
+                    <button class="btn-outline-dark small">Resolve</button>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="text-right"><strong>Estimated Project Total:</strong></td>
+              <td colspan="2" class="total-price">₹{{ getTotalEstimate().toLocaleString() }}</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="action-footer">
+          <button class="btn-outline-dark" (click)="extractedData.set(null); selectedFile.set(null)">Upload Another</button>
+          <button class="btn-primary">Generate Bulk RFQ (Request for Quotation)</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

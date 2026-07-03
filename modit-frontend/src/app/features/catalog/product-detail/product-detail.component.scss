@@ -1,0 +1,142 @@
+.detail-layout {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1a2634;
+  color: white;
+
+  .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e67e22;
+    .badge { font-size: 0.7rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; }
+  }
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.product-header {
+  display: flex;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+  margin-bottom: 2rem;
+
+  .product-icon {
+    font-size: 5rem;
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .category-tag {
+      color: #e67e22;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 { margin: 0 0 1rem 0; color: #2c3e50; font-size: 2.2rem; }
+    p { color: #7f8c8d; line-height: 1.6; max-width: 600px; }
+  }
+}
+
+.ai-banner {
+  display: flex;
+  gap: 1rem;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid #8e44ad;
+  margin-bottom: 2rem;
+
+  .ai-icon { font-size: 1.5rem; }
+  .ai-text { color: #4a148c; line-height: 1.5; }
+}
+
+.comparison-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+
+  h2 { color: #2c3e50; margin-top: 0; margin-bottom: 1.5rem; }
+}
+
+.quotes-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 1.2rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  th { color: #7f8c8d; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+  
+  tr.highlight {
+    background-color: #fdfbfb;
+    border-left: 4px solid #e67e22;
+  }
+
+  .vendor-name {
+    font-weight: 600;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ai-badge {
+    background: #e67e22;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-weight: bold;
+  }
+
+  .price { font-weight: 700; color: #27ae60; font-size: 1.1rem; }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary { background: #e67e22; color: white; &:hover { background: #d35400; } }
+.btn-secondary { background: #8e44ad; color: white; &:hover { background: #732d91; } }
+.btn-outline { padding: 0.5rem 1rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 6px; &:hover { background: rgba(255,255,255,0.1); } }
+.small { padding: 0.5rem 1rem; font-size: 0.85rem; }

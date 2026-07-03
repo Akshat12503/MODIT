@@ -1,0 +1,82 @@
+<div class="dashboard-layout">
+  <nav class="navbar vendor-nav">
+    <div class="brand">MODIT <span class="badge vendor-badge">VENDOR PORTAL</span></div>
+    <div class="nav-actions">
+      <span class="user-greeting">Welcome, {{ vendorName() }}</span>
+      <a routerLink="/login" class="btn-outline">Logout</a>
+    </div>
+  </nav>
+
+  <div class="content-wrapper">
+    <div class="ai-insights-panel">
+      <div class="panel-header">
+        <span class="ai-icon">📈</span>
+        <h2>Agentic AI: Market Insights & Demand Prediction</h2>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card warning">
+          <h4>Stock Alert: TMT Rebar</h4>
+          <p>AI predicts a <strong>25% surge</strong> in demand next week due to 3 new commercial projects starting in Noida. Recommended action: Restock 50 tons.</p>
+          <button class="btn-outline-dark small mt-2">Auto-Procure from Mill</button>
+        </div>
+        <div class="insight-card success">
+          <h4>Pricing Opportunity: Cement</h4>
+          <p>Average competitor price in your radius has increased to ₹385/bag. You can safely increase your automated quoting price by ₹5 while remaining the top choice.</p>
+          <button class="btn-outline-dark small mt-2">Update Pricing Rules</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="leads-section">
+      <div class="section-header">
+        <h2>Customer Leads & Active RFQs</h2>
+        <span class="subtitle">AI matches you with contractors based on your inventory and location.</span>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>RFQ ID</th>
+            <th>Contractor & Location</th>
+            <th>Requirement</th>
+            <th>Status</th>
+            <th>AI Suggested Quote</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (lead of activeLeads(); track lead.id) {
+            <tr>
+              <td><strong>{{ lead.id }}</strong></td>
+              <td>
+                <div class="contractor-info">
+                  <span class="name">{{ lead.contractorName }}</span>
+                  <span class="location">📍 {{ lead.projectLocation }}</span>
+                </div>
+              </td>
+              <td>{{ lead.quantity }} {{ lead.unit }} of {{ lead.material }}</td>
+              <td>
+                <span class="status-badge" [ngClass]="lead.status.toLowerCase()">
+                  {{ lead.status }}
+                </span>
+              </td>
+              <td class="price">₹{{ lead.aiSuggestedPrice }} / {{ lead.unit }}</td>
+              <td>
+                @if (lead.status === 'Pending') {
+                  <div class="action-group">
+                    <button class="btn-primary small" (click)="approveAiQuote(lead.id)">Approve AI Quote</button>
+                    <button class="btn-outline-dark small">Manual Edit</button>
+                  </div>
+                } @else if (lead.status === 'Negotiating') {
+                  <button class="btn-secondary small">Let AI Negotiate</button>
+                } @else {
+                  <span class="text-muted">Quote Sent</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>

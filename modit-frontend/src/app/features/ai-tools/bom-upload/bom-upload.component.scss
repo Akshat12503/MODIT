@@ -1,0 +1,140 @@
+.bom-layout {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1a2634;
+  color: white;
+
+  .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e67e22;
+    .badge { font-size: 0.7rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; }
+  }
+}
+
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    h1 { color: #2c3e50; margin: 0; }
+    .ai-icon { font-size: 2rem; }
+  }
+  p { color: #7f8c8d; line-height: 1.6; margin-top: 0.5rem; }
+}
+
+.upload-zone {
+  background: white;
+  border: 2px dashed #bdc3c7;
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s;
+
+  &:hover { border-color: #e67e22; background: #fdfbfb; }
+  
+  &.processing { border-style: solid; border-color: #8e44ad; background: #faf5ff; }
+
+  input[type="file"] {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; cursor: pointer;
+  }
+
+  .upload-icon { font-size: 4rem; margin-bottom: 1rem; }
+  h3 { color: #2c3e50; margin-bottom: 0.5rem; }
+  p { color: #7f8c8d; }
+  
+  .file-info {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f1f2f6;
+    border-radius: 6px;
+    display: inline-block;
+  }
+}
+
+.spinner {
+  width: 50px; height: 50px;
+  border: 4px solid #e1bee7;
+  border-top: 4px solid #8e44ad;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.results-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.success-banner {
+  background: #d4edda;
+  color: #155724;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+}
+
+.bom-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td { padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid #eee; }
+  th { background: #f8f9fa; color: #7f8c8d; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+  
+  tr.warning { background-color: #fff8e1; border-left: 4px solid #f39c12; }
+  
+  .original-text { font-style: italic; color: #7f8c8d; font-size: 0.9rem; }
+  
+  .status-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #f1c40f; color: white;
+    
+    &.success { background: #2ecc71; }
+  }
+
+  tfoot td { background: #f8f9fa; padding: 1.5rem; font-size: 1.1rem; }
+  .total-price { font-weight: 700; color: #27ae60; font-size: 1.25rem; }
+}
+
+.action-footer {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  background: #f8f9fa;
+  border-top: 1px solid #eee;
+}
+
+// Buttons
+button { border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; z-index: 10; position: relative; }
+.btn-primary { background: #e67e22; color: white; &:hover { background: #d35400; } }
+.btn-secondary { background: #8e44ad; color: white; &:hover { background: #732d91; } }
+.btn-outline { padding: 0.5rem 1rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 6px; &:hover { background: rgba(255,255,255,0.1); } }
+.btn-outline-dark { padding: 0.5rem 1rem; border: 1px solid #bdc3c7; background: transparent; color: #2c3e50; &:hover { background: #eee; } }
+.large { padding: 0.8rem 2rem; font-size: 1.1rem; }
+.small { padding: 0.5rem 1rem; font-size: 0.85rem; }
+.mt-2 { margin-top: 1rem; }

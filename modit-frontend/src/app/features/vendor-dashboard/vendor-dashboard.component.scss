@@ -1,0 +1,94 @@
+.dashboard-layout {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem; color: white;
+  &.vendor-nav { background-color: #2c3e50; border-bottom: 3px solid #3498db; }
+  
+  .brand {
+    font-size: 1.5rem; font-weight: 700; color: white;
+    .badge.vendor-badge { background: #3498db; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; margin-left: 0.5rem; vertical-align: middle; }
+  }
+  .nav-actions { display: flex; gap: 1.5rem; align-items: center; }
+  .user-greeting { font-size: 0.9rem; color: #bdc3c7; }
+}
+
+.content-wrapper { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+/* AI Insights Panel */
+.ai-insights-panel {
+  background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+  border-top: 4px solid #8e44ad;
+
+  .panel-header {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+    h2 { margin: 0; color: #2c3e50; }
+    .ai-icon { font-size: 1.8rem; }
+  }
+
+  .insights-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    
+    .insight-card {
+      padding: 1.5rem; border-radius: 8px; border-left: 4px solid #bdc3c7;
+      background: #fdfdfd;
+      
+      h4 { margin: 0 0 0.5rem 0; color: #2c3e50; }
+      p { margin: 0; font-size: 0.9rem; color: #555; line-height: 1.5; }
+      
+      &.warning { border-left-color: #f39c12; background: #fffdf7; }
+      &.success { border-left-color: #2ecc71; background: #f9fdfa; }
+    }
+  }
+}
+
+/* Leads Section */
+.leads-section {
+  background: white; border-radius: 12px; padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+
+  .section-header {
+    margin-bottom: 1.5rem;
+    h2 { margin: 0 0 0.5rem 0; color: #2c3e50; }
+    .subtitle { color: #7f8c8d; font-size: 0.9rem; }
+  }
+}
+
+.data-table {
+  width: 100%; border-collapse: collapse;
+  
+  th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #eee; }
+  th { background: #f8f9fa; color: #7f8c8d; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+  
+  .contractor-info {
+    display: flex; flex-direction: column; gap: 0.25rem;
+    .name { font-weight: 600; color: #2c3e50; }
+    .location { font-size: 0.8rem; color: #7f8c8d; }
+  }
+
+  .status-badge {
+    padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700;
+    &.pending { background: #f1c40f; color: white; }
+    &.negotiating { background: #9b59b6; color: white; }
+    &.quoted { background: #2ecc71; color: white; }
+  }
+
+  .price { font-weight: 700; color: #27ae60; }
+  .text-muted { color: #bdc3c7; font-size: 0.9rem; font-style: italic; }
+}
+
+.action-group { display: flex; gap: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+
+/* Buttons */
+button { border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-primary { background: #3498db; color: white; &:hover { background: #2980b9; } }
+.btn-secondary { background: #8e44ad; color: white; &:hover { background: #732d91; } }
+.btn-outline { padding: 0.5rem 1rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 6px; &:hover { background: rgba(255,255,255,0.1); } }
+.btn-outline-dark { padding: 0.4rem 0.8rem; border: 1px solid #bdc3c7; background: transparent; color: #2c3e50; &:hover { background: #eee; } }
+.small { padding: 0.5rem 0.8rem; font-size: 0.8rem; }

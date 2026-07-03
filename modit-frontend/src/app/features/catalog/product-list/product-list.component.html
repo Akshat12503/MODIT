@@ -1,0 +1,72 @@
+<div class="dashboard-layout">
+  <nav class="navbar">
+    <div class="brand">MODIT <span class="badge">NCR</span></div>
+    <div class="nav-actions">
+      <div class="search-bar">
+        <input 
+          type="text" 
+          placeholder="Search materials (e.g., Cement, TMT)..." 
+          [ngModel]="searchQuery()" 
+          (ngModelChange)="searchQuery.set($event)"
+        />
+      </div>
+      <button class="btn-outline" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="content-wrapper">
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul class="category-list">
+        @for (cat of categories; track cat) {
+          <li 
+            [class.active]="selectedCategory() === cat" 
+            (click)="setCategory(cat)">
+            {{ cat }}
+          </li>
+        }
+      </ul>
+      
+      <div class="ai-card">
+        <h4>✨ Agentic AI</h4>
+        <p>Upload a Bill of Materials (BOM) to get instant vendor matching.</p>
+        <button class="btn-primary small" routerLink="/bom-upload">Upload BOM</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="grid-header">
+        <h2>{{ selectedCategory() === 'All' ? 'All Materials' : selectedCategory() }}</h2>
+        <span class="result-count">{{ filteredProducts().length }} items found</span>
+      </div>
+
+      <div class="product-grid">
+        @for (product of filteredProducts(); track product.id) {
+          <div class="product-card">
+            <div class="card-icon">{{ product.image }}</div>
+            <div class="card-details">
+              <span class="category-tag">{{ product.category }}</span>
+              <h3>{{ product.name }}</h3>
+              <div class="price-row">
+                <span class="price">₹{{ product.basePrice }}</span>
+                <span class="unit">/ {{ product.unit }}</span>
+              </div>
+              <div class="vendor-info">
+                Available from <strong>{{ product.vendorsCount }}</strong> suppliers
+              </div>
+            </div>
+            <div class="card-actions">
+              <button class="btn-primary" [routerLink]="['/product', product.id]">Compare Quotes</button>
+            </div>
+          </div>
+        }
+        
+        @if (filteredProducts().length === 0) {
+          <div class="empty-state">
+            <p>No materials found matching your criteria.</p>
+          </div>
+        }
+      </div>
+    </main>
+  </div>
+</div>
