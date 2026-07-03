@@ -40,6 +40,7 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private cartService: CartService
+    
   ) {}
 
   ngOnInit() {
@@ -53,11 +54,11 @@ export class ProductDetailComponent implements OnInit {
       name: this.product().name,
       vendorName: quote.vendorName,
       price: quote.pricePerUnit,
-      quantity: 100, // Default bulk quantity for prototype
+      quantity: 100, // Default bulk quantity
       unit: this.product().unit
     });
     
-    this.router.navigate(['/checkout']);
+    alert(`${this.product().name} added to cart!`);
   }
 
   requestNegotiation(vendorId: string) {

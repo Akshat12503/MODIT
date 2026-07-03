@@ -10,6 +10,11 @@
           (ngModelChange)="searchQuery.set($event)"
         />
       </div>
+      
+      <button class="btn-primary" routerLink="/checkout">
+        🛒 Cart ({{ cartService.items().length }})
+      </button>
+
       <button class="btn-outline" (click)="logout()">Logout</button>
     </div>
   </nav>

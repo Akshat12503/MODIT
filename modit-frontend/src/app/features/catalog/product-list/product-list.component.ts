@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { CartService } from '../../../core/services/cart.service';
 
 export interface Product {
   id: string;
@@ -41,7 +42,10 @@ export class ProductListComponent implements OnInit {
     });
   });
 
-  constructor(public auth: AuthService) {}
+  constructor(
+    public auth: AuthService,
+    public cartService: CartService // <-- ADD THIS
+  ) {}
 
   ngOnInit() {
     // Mock data for the initial prototype UI
