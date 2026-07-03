@@ -14,18 +14,25 @@
               <thead>
                 <tr>
                   <th>Material</th>
+                  <th>Vendor</th>
                   <th>Qty</th>
                   <th>Price</th>
                   <th>Total</th>
                 </tr>
               </thead>
               <tbody>
-                @for (item of cartItems(); track item.id) {
+                @for (item of cartService.items(); track item.id) {
                   <tr>
                     <td>{{ item.name }}</td>
+                    <td class="vendor-text">{{ item.vendorName }}</td>
                     <td>{{ item.quantity }} {{ item.unit }}</td>
                     <td>₹{{ item.price }}</td>
                     <td>₹{{ (item.price * item.quantity).toLocaleString() }}</td>
+                  </tr>
+                }
+                @if (cartService.items().length === 0) {
+                  <tr>
+                    <td colspan="5" class="empty-cart">Your cart is empty.</td>
                   </tr>
                 }
               </tbody>
@@ -49,19 +56,19 @@
             <div class="totals">
               <div class="row">
                 <span>Subtotal</span>
-                <span>₹{{ subtotal().toLocaleString() }}</span>
+                <span>₹{{ cartService.subtotal().toLocaleString() }}</span>
               </div>
               <div class="row tax">
                 <span>CGST (9%)</span>
-                <span>+ ₹{{ cgst().toLocaleString() }}</span>
+                <span>+ ₹{{ cartService.cgst().toLocaleString() }}</span>
               </div>
               <div class="row tax border-bottom">
                 <span>SGST (9%)</span>
-                <span>+ ₹{{ sgst().toLocaleString() }}</span>
+                <span>+ ₹{{ cartService.sgst().toLocaleString() }}</span>
               </div>
               <div class="row total">
                 <span>Grand Total</span>
-                <span>₹{{ grandTotal().toLocaleString() }}</span>
+                <span>₹{{ cartService.grandTotal().toLocaleString() }}</span>
               </div>
             </div>
 
@@ -88,7 +95,7 @@
             <button 
               class="btn-primary large full-width mt-3" 
               (click)="placeOrder()" 
-              [disabled]="isProcessing()">
+              [disabled]="isProcessing() || cartService.items().length === 0">
               {{ isProcessing() ? 'Processing Order...' : 'Confirm & Place Order' }}
             </button>
           </section>

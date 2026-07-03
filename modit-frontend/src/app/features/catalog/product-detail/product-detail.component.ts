@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import { CartService } from '../../../core/services/cart.service';
 
 interface VendorQuote {
   id: string;
@@ -21,7 +22,6 @@ interface VendorQuote {
 export class ProductDetailComponent implements OnInit {
   productId = signal<string | null>(null);
   
-  // Mocking the selected product for now
   product = signal({
     name: 'UltraTech Portland Cement',
     category: 'Cement',
@@ -30,18 +30,34 @@ export class ProductDetailComponent implements OnInit {
     description: 'High-quality ordinary portland cement suitable for all general construction purposes.'
   });
 
-  // Mocking vendor quotes for the price comparison feature
   quotes = signal<VendorQuote[]>([
     { id: 'v1', vendorName: 'Delhi NCR Builders Hub', pricePerUnit: 380, deliveryTimeDays: 2, rating: 4.8, isAiRecommended: true },
     { id: 'v2', vendorName: 'Gurugram Cement Suppliers', pricePerUnit: 375, deliveryTimeDays: 5, rating: 4.2, isAiRecommended: false },
     { id: 'v3', vendorName: 'Noida Construct-All', pricePerUnit: 390, deliveryTimeDays: 1, rating: 4.9, isAiRecommended: false },
   ]);
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   ngOnInit() {
-    // In a real app, we would fetch the product details using this ID via HttpClient
     this.productId.set(this.route.snapshot.paramMap.get('id'));
+  }
+
+  addToCart(quote: VendorQuote) {
+    this.cartService.addToCart({
+      id: Math.random().toString(36).substring(2, 9),
+      productId: this.productId() || 'unknown',
+      name: this.product().name,
+      vendorName: quote.vendorName,
+      price: quote.pricePerUnit,
+      quantity: 100, // Default bulk quantity for prototype
+      unit: this.product().unit
+    });
+    
+    this.router.navigate(['/checkout']);
   }
 
   requestNegotiation(vendorId: string) {

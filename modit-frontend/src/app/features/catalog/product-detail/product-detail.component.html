@@ -51,10 +51,8 @@
                 <td>{{ quote.rating }} ⭐</td>
                 <td>
                   <div class="action-buttons">
-                    <button class="btn-primary small">Add to Cart</button>
-                    <button class="btn-secondary small" (click)="requestNegotiation(quote.id)">
-                      AI Negotiate
-                    </button>
+                    <button class="btn-primary small" (click)="addToCart(quote)">Add to Cart</button>
+                    <button class="btn-secondary small" (click)="requestNegotiation(quote.id)">AI Negotiate</button>
                   </div>
                 </td>
               </tr>
