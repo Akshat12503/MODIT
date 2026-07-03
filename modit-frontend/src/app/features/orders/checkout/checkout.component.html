@@ -1,0 +1,110 @@
+<div class="checkout-layout">
+  <nav class="navbar">
+    <div class="brand">MODIT <span class="badge">NCR</span></div>
+    <a routerLink="/products" class="btn-outline">← Back to Catalog</a>
+  </nav>
+
+  <div class="content-wrapper">
+    @if (!orderComplete()) {
+      <div class="checkout-grid">
+        <div class="main-column">
+          <section class="card">
+            <h2>Order Summary</h2>
+            <table class="order-table">
+              <thead>
+                <tr>
+                  <th>Material</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of cartItems(); track item.id) {
+                  <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }} {{ item.unit }}</td>
+                    <td>₹{{ item.price }}</td>
+                    <td>₹{{ (item.price * item.quantity).toLocaleString() }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </section>
+
+          <section class="card">
+            <h2>Business & GST Details</h2>
+            <div class="form-group">
+              <label>GSTIN (Delhi NCR)</label>
+              <input type="text" [ngModel]="gstNumber()" (ngModelChange)="gstNumber.set($event)" class="form-control" />
+              <small class="hint">Input valid GSTIN to claim Input Tax Credit (ITC).</small>
+            </div>
+          </section>
+        </div>
+
+        <div class="sidebar-column">
+          <section class="card summary-card">
+            <h2>Payment Details</h2>
+            
+            <div class="totals">
+              <div class="row">
+                <span>Subtotal</span>
+                <span>₹{{ subtotal().toLocaleString() }}</span>
+              </div>
+              <div class="row tax">
+                <span>CGST (9%)</span>
+                <span>+ ₹{{ cgst().toLocaleString() }}</span>
+              </div>
+              <div class="row tax border-bottom">
+                <span>SGST (9%)</span>
+                <span>+ ₹{{ sgst().toLocaleString() }}</span>
+              </div>
+              <div class="row total">
+                <span>Grand Total</span>
+                <span>₹{{ grandTotal().toLocaleString() }}</span>
+              </div>
+            </div>
+
+            <div class="payment-methods">
+              <h3>Select Payment Mode</h3>
+              
+              <label class="radio-label" [class.active]="paymentMethod() === 'BNPL'">
+                <input type="radio" name="payment" value="BNPL" [ngModel]="paymentMethod()" (ngModelChange)="paymentMethod.set($event)">
+                <div class="method-details">
+                  <strong>MODIT 30-Day Credit (BNPL)</strong>
+                  <span>Pre-approved limit: ₹5,00,000</span>
+                </div>
+              </label>
+
+              <label class="radio-label" [class.active]="paymentMethod() === 'NetBanking'">
+                <input type="radio" name="payment" value="NetBanking" [ngModel]="paymentMethod()" (ngModelChange)="paymentMethod.set($event)">
+                <div class="method-details">
+                  <strong>Business Net Banking</strong>
+                  <span>Instant RTGS / NEFT</span>
+                </div>
+              </label>
+            </div>
+
+            <button 
+              class="btn-primary large full-width mt-3" 
+              (click)="placeOrder()" 
+              [disabled]="isProcessing()">
+              {{ isProcessing() ? 'Processing Order...' : 'Confirm & Place Order' }}
+            </button>
+          </section>
+        </div>
+      </div>
+    } @else {
+      <div class="success-state card">
+        <div class="success-icon">✅</div>
+        <h1>Order Placed Successfully!</h1>
+        <p>Your materials are being dispatched. GST Invoice #INV-2026-889 has been generated.</p>
+        
+        <div class="action-buttons">
+          <button class="btn-primary" routerLink="/products">Continue Sourcing</button>
+          <button class="btn-outline-dark">Download GST Invoice (PDF)</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

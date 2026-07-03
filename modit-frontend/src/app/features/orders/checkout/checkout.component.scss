@@ -1,0 +1,77 @@
+.checkout-layout {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem; background-color: #1a2634; color: white;
+  .brand { font-size: 1.5rem; font-weight: 700; color: #e67e22; }
+  .badge { font-size: 0.7rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; }
+}
+
+.content-wrapper { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+.checkout-grid {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;
+  @media (max-width: 900px) { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+  h2 { margin-top: 0; color: #2c3e50; font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.75rem; }
+}
+
+.order-table {
+  width: 100%; border-collapse: collapse;
+  th, td { padding: 1rem 0; text-align: left; border-bottom: 1px solid #eee; }
+  th { color: #7f8c8d; font-size: 0.85rem; text-transform: uppercase; }
+  td { color: #2c3e50; }
+}
+
+.form-group {
+  label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #34495e; }
+  .form-control { width: 100%; padding: 0.8rem; border: 1px solid #dcdfe3; border-radius: 6px; font-size: 1rem; text-transform: uppercase; }
+  .hint { color: #7f8c8d; font-size: 0.8rem; margin-top: 0.25rem; display: block; }
+}
+
+.summary-card {
+  .totals {
+    margin-bottom: 2rem;
+    .row { display: flex; justify-content: space-between; padding: 0.5rem 0; color: #2c3e50; }
+    .tax { color: #7f8c8d; font-size: 0.9rem; }
+    .border-bottom { border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 0.5rem; }
+    .total { font-weight: 700; font-size: 1.25rem; color: #27ae60; padding-top: 0.5rem; }
+  }
+}
+
+.payment-methods {
+  h3 { font-size: 1rem; color: #2c3e50; margin-bottom: 1rem; }
+  
+  .radio-label {
+    display: flex; gap: 1rem; padding: 1rem; border: 1px solid #eee; border-radius: 8px; margin-bottom: 1rem; cursor: pointer; transition: all 0.2s;
+    &:hover { border-color: #bdc3c7; }
+    &.active { border-color: #e67e22; background: #fffaf6; }
+    
+    input[type="radio"] { accent-color: #e67e22; margin-top: 0.2rem; }
+    .method-details { display: flex; flex-direction: column; gap: 0.25rem; strong { color: #2c3e50; } span { font-size: 0.85rem; color: #7f8c8d; } }
+  }
+}
+
+.success-state {
+  text-align: center; padding: 4rem 2rem; max-width: 600px; margin: 0 auto;
+  .success-icon { font-size: 4rem; margin-bottom: 1rem; }
+  h1 { color: #27ae60; margin-bottom: 1rem; }
+  p { color: #7f8c8d; line-height: 1.6; margin-bottom: 2rem; }
+  .action-buttons { display: flex; justify-content: center; gap: 1rem; }
+}
+
+button { border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-primary { background: #e67e22; color: white; &:hover:not(:disabled) { background: #d35400; } &:disabled { opacity: 0.7; cursor: not-allowed; } }
+.btn-outline { padding: 0.5rem 1rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 6px; &:hover { background: rgba(255,255,255,0.1); } }
+.btn-outline-dark { padding: 0.8rem 1.5rem; border: 1px solid #bdc3c7; background: transparent; color: #2c3e50; &:hover { background: #eee; } }
+.large { padding: 1rem; font-size: 1.1rem; }
+.full-width { width: 100%; }
+.mt-3 { margin-top: 1.5rem; }

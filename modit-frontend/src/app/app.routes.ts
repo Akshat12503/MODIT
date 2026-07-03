@@ -25,5 +25,9 @@ export const routes: Routes = [
   {
     path: 'vendor-dashboard',
     loadComponent: () => import('./features/vendor-dashboard/vendor-dashboard.component').then(m => m.VendorDashboardComponent)
+  },
+  {
+    path: 'checkout',
+    loadComponent: () => import('./features/orders/checkout/checkout.component').then(m => m.CheckoutComponent)
   }
 ];
