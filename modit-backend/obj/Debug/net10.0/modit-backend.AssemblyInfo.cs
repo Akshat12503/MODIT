@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("modit-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b784a44a3d853563aae683d3917aca542f32756d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f4e21e5158219170cc379d3d0e6cc66735f7740b")]
 [assembly: System.Reflection.AssemblyProductAttribute("modit-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("modit-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
