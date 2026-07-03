@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 // DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseInMemoryDatabase("ModitPrototypeDb"));
 
 // App services
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -67,6 +67,24 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        // Use ApplicationDbContext to match your seeder
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        
+        // Use await and call SeedAsync
+        await DataSeeder.SeedAsync(context); 
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred seeding the DB.");
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {

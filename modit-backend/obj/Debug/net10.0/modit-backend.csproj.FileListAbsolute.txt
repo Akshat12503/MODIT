@@ -162,3 +162,4 @@ C:\Users\KIIT\Desktop\MODIT\modit-backend\bin\Debug\net10.0\Microsoft.AspNetCore
 C:\Users\KIIT\Desktop\MODIT\modit-backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\KIIT\Desktop\MODIT\modit-backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\KIIT\Desktop\MODIT\modit-backend\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\KIIT\Desktop\MODIT\modit-backend\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.InMemory.dll
